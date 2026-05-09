@@ -22,7 +22,7 @@ The current process of monitoring stock levels and sales reports on Seltrak (skj
 - Persistent session handling via Playwright browser context.
 
 ### 5.2. Data Extraction (Universal API-Based)
-- **Automated Discovery**: Fetch data from all major internal API endpoints:
+- **Automated Discovery**: Fetch data from all major internal API endpoints: API
     - `inventory`, `deposit`, `restock`, `lost_return`
     - `employee`, `big_query`, `attendance`, `branch`, `category`
     - `customer`, `customer_movement`, `product`
