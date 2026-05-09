@@ -202,14 +202,14 @@ def main():
     # So we use st.sidebar.radio directly to get the menu early
     with st.sidebar:
         st.header("⚙️ Actions")
-        if 'sync_username' not in st.session_state: st.session_state['sync_username'] = "owner"
-        if 'sync_password' not in st.session_state: st.session_state['sync_password'] = "admin"
+        if 'user_auth_key' not in st.session_state: st.session_state['user_auth_key'] = ""
+        if 'pass_auth_key' not in st.session_state: st.session_state['pass_auth_key'] = ""
         
         if st.button("🔄 Sync Data Sekarang", key="sync_top"):
             with st.spinner("Sinkronisasi data sedang berlangsung..."):
                 loop = asyncio.new_event_loop()
                 asyncio.set_event_loop(loop)
-                results, error = loop.run_until_complete(perform_sync(st.session_state['sync_username'], st.session_state['sync_password']))
+                results, error = loop.run_until_complete(perform_sync(st.session_state['user_auth_key'], st.session_state['pass_auth_key']))
                 if error:
                     st.error(f"Sync failed: {error}")
                 else:
@@ -574,8 +574,8 @@ def main():
         st.divider()
         st.header("🔐 Authentication")
         # Menggunakan key agar tersambung dengan session_state yang dipakai tombol Sync di atas
-        st.text_input("Username", value="", key="sync_username")
-        st.text_input("Password", value="", type="password", key="sync_password")
+        st.text_input("Username", value="", key="user_auth_key")
+        st.text_input("Password", value="", type="password", key="pass_auth_key")
 
 if __name__ == "__main__":
     main()
