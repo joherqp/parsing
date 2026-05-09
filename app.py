@@ -574,8 +574,8 @@ def main():
         st.divider()
         st.header("🔐 Authentication")
         # Menggunakan key agar tersambung dengan session_state yang dipakai tombol Sync di atas
-        st.text_input("Username", value="owner", key="sync_username")
-        st.text_input("Password", value="admin", type="password", key="sync_password")
+        st.text_input("Username", value="", key="sync_username")
+        st.text_input("Password", value="", type="password", key="sync_password")
 
 if __name__ == "__main__":
     main()
