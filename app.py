@@ -5,6 +5,18 @@ from scraper import run_full_fetcher
 import json
 import os
 from datetime import date
+import subprocess
+
+def ensure_playwright_installed():
+    """Memastikan browser Playwright terinstall (Penting untuk Streamlit Cloud)."""
+    try:
+        # Coba jalankan playwright untuk cek apakah chromium ada
+        subprocess.run(["playwright", "install", "chromium"], check=True)
+    except Exception as e:
+        st.error(f"Gagal menginstall browser: {e}")
+
+# Pastikan terinstall saat load
+ensure_playwright_installed()
 
 # Page config
 st.set_page_config(
@@ -131,6 +143,7 @@ def format_id_number(val):
         return f"{f_val:,.0f}".replace(",", ".")
     except (ValueError, TypeError):
         return val
+
 
 def get_defaults(ordered_keys, options, total_limit=3):
     """Smart default column selector based on priority keys."""
